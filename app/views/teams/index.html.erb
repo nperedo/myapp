@@ -1,0 +1,30 @@
+<h1 class="text-3xl font-bold mb-6">Listing Teams</h1>
+
+<div class="overflow-x-auto">
+  <table class="min-w-full border border-gray-300">
+    <thead class="bg-gray-100">
+      <tr>
+        <th class="px-4 py-2 border-b border-gray-300 text-left">Name</th>
+        <th class="px-4 py-2 border-b border-gray-300 text-left">About</th>
+        <th class="px-4 py-2 border-b border-gray-300"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @teams.each do |team| %>
+        <tr class="hover:bg-gray-50">
+          <td class="px-4 py-2 border-b border-gray-300"><%= team.name %></td>
+          <td class="px-4 py-2 border-b border-gray-300"><%= truncate(team.about, length: 60) %></td>
+          <td class="px-4 py-2 border-b border-gray-300 space-x-2">
+            <%= link_to 'Show', team, class: "bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded" %>
+            <%= link_to 'Edit', edit_team_path(team), class: "bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded" %>
+            <%= link_to 'Destroy', team, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: "bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<div class="mt-4">
+  <%= link_to 'New Team', new_team_path, class: "bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded" %>
+</div>
